@@ -31,3 +31,4 @@ Este proyecto es un ejercicio básico de React para practicar la creación de co
       done: false,
     },
   ];
+![Ejemplo de Lista de Tareas](./assets/TodoList.jpg)
