@@ -1,15 +1,18 @@
 import './App.css'
-import CountJS from './components/CountJS'
-import CountReact from './components/CountReact'
-import Title from './components/Title'
+import { TaskList } from './components/TaskList'
+// import { Ejercicio } from './components/Ejercicio'
+// import { FormControlado } from './components/FormControlado'
+// import { FormNoControlado } from './components/FormNoControlado'
+
 
 function App() {
 
   return (
       <div>
-      <CountReact />
-      <CountJS />
-      <Title />
+        {/* <FormNoControlado /> */}
+        {/* <FormControlado /> */}
+        {/* <Ejercicio /> */}
+    <TaskList />
       </div>
      
   )
