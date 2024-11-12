@@ -1,8 +1,13 @@
-# React + Vite
+## Ejercicio 3
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SearchList
+Crear un componente SearchList que
+renderice un input y una lista (ul con li)
+tome la prop items, que es un array de strings
+renderice cada item como li dentro del ul
+a medida que se escribe en el input, actualice la lista mostrando los items que contengan como substring lo ingresado. (p. ej.: si se ingresa "java" debe mostrarse "javascript")
+la lista al realizar la búsqueda debe mostrarse ordenada alfabéticamente
+cuando el input está vacío, debe mostrar la lista normal con todos los ítems
+EXTRA: si se ingresa algo en la búsqueda, resalta en cada ítem la substring ingresada, por ejemplo, si se ingresa java, javascript debería aparecer como: javascript
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+EXTRA 2: Agregar un boton para poder eliminar un item de la lista
