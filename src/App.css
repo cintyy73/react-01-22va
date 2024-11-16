@@ -5,6 +5,9 @@
   text-align: center;
 }
 
+.prueba{
+  color: crimson
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -39,4 +42,7 @@
 
 .read-the-docs {
   color: #888;
+}
+.prueba{
+  color:aqua
 }

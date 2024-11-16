@@ -1,0 +1,93 @@
+Los CSS Modules en React nos permiten establecer que, si tenemos un archivo que termina en la extensión module.css de react module CSS, podemos importar este archivo de estilos para aplicarlos en nuestro código JavaScript.
+Entonces, supongamos que queremos estilizar un componente con el nombre de clase tweetsPage de CSS Modules. Para usar los CSS Modules en React, creamos un nuevo archivo que se titule TweetsPage.module.css. En este archivo podemos insertar cualquier propiedad de estilo CSS llamando al nombre de clase e insertando las propiedades en términos de clave:valor.
+.tweetsPage {
+color:green;
+}
+Entonces, como hemos creado un archivo con la extensión module, debemos importarlo en el archivo de nuestro componente de la siguiente manera:
+import styles from ‘./TweetsPage.module.css’;
+Nota que, a diferencia de cuando importamos un CSS directamente, debemos importar la palabra clave styles.
+¿Qué nos da esta palabra clave? Veámoslo usando el comando console.log. Si escribes console.log (styles) y vas al inspector de tu navegador, verás que lo que recibimos es un objeto con la clase tweetsPage y un string. Este string se compone del nombre del archivo, el nombre de la clase y un código hash que lo identifica de manera única. Por ejemplo:
+tweetsPage: «TweetsPage_tweetsPage_U3B1a»
+Para aplicar el estilo declarado con los CSS Modules en React, nos dirigimos a nuestro componente original. Allí, en vez de pasarle la clase usando className= «tweetsPage», usaremos la palabra clave styles. Entonces, la declaración de la clase quedaría de la siguiente manera:
+className = {style.tweetsPage}
+Con la línea de código anterior, hemos pasado la clase y el string único al elemento. Es decir, no solo pasamos el nombre de clase tweetsPage, sino que pasamos todo el string con el código hash único que llama al estilo declarado. Esto lo podrás ver más claramente en el panel de elementos de tu inspector, donde verás que la clase que toma el navegador tiene el string que obtenemos con el objeto styles.
+Definir los estilos de esta manera hace que el alcance de la clase se mantenga a nivel local de CSS Modules. Esto significa que solo se aplicará al componente que hemos definido en el archivo específico. Si tuviéramos, por ejemplo, un archivo loginPage con la clase tweetsPage, el estilo de la clase no sería aplicado aunque tuviera el mismo nombre.
+De este modo, CSS Modules en React nos garantiza que las clases que definimos son únicas. Y como son únicas, no pueden colisionar con ninguna otra clase que tengamos por ahí de CSS Modules.
+Imagina que tienes dos componentes ButtonA y ButtonB, y ambos comparten la clase CSS btn:
+Archivo CSS global (sin módulos)
+css
+Copiar código
+/* styles.css */
+.btn {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn {
+  background-color: red;
+}
+
+Si ambos componentes importan esta hoja de estilos, la última definición de la clase btn (rojo) pisará la anterior (azul).
+Solución: Usar CSS Modules
+Con CSS Modules, cada clase es única para evitar conflictos. Aquí está el ejemplo modificado:
+Archivo CSS de ButtonA (ButtonA.module.css)
+css
+Copiar código
+.btn {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+Archivo CSS de ButtonB (ButtonB.module.css)
+css
+Copiar código
+.btn {
+  background-color: red;
+  color: black;
+  padding: 12px 24px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+Componente ButtonA
+jsx
+Copiar código
+import React from 'react';
+import styles from './ButtonA.module.css';
+
+const ButtonA = () => {
+  return <button className={styles.btn}>Button A</button>;
+};
+
+export default ButtonA;
+
+Componente ButtonB
+jsx
+Copiar código
+import React from 'react';
+import styles from './ButtonB.module.css';
+
+const ButtonB = () => {
+  return <button className={styles.btn}>Button B</button>;
+};
+
+export default ButtonB;
+
+Resultado
+El botón ButtonA tendrá el estilo definido en ButtonA.module.css (fondo azul).
+El botón ButtonB tendrá el estilo definido en ButtonB.module.css (fondo rojo).
+Con CSS Modules, las clases generadas se renombrarán automáticamente con un hash único, por ejemplo:
+ButtonA_btn__123abc
+ButtonB_btn__456def
+Esto asegura que no haya conflictos entre clases incluso si tienen el mismo nombre.
+Ventajas de CSS Modules
+Encapsulamiento de estilos: Los estilos se aplican solo al componente donde se importan.
+Evitar colisiones: Los nombres de clase son únicos gracias al hash generado.
